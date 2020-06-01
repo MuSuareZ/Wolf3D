@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:56:32 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/01 15:40:40 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/01 16:19:28 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int			mouse_move(int x, int y, t_env *e)
 
 int		release_key(int keycode, t_env *env)
 {
-	if (keycode == W)
+	if (keycode == W || keycode == UP)
 		env->move_up = 0;
-	else if (keycode == S)
+	else if (keycode == S || keycode == DOWN)
 		env->move_down = 0;
-	else if (keycode == D)
+	else if (keycode == D || keycode == RIGHT)
 		env->move_right = 0;
-	else if (keycode == A)
+	else if (keycode == A || keycode == LEFT)
 		env->move_left = 0;
 	else if (keycode == 257 || keycode == 258)	//Shift for running
 		env->move_speed = 0.15;
@@ -40,13 +40,13 @@ int		release_key(int keycode, t_env *env)
 
 int		press_key(int keycode, t_env *env)
 {
-	if (keycode == W)
+	if (keycode == W || keycode == UP)
 		env->move_up = 1;
-	else if (keycode == S)
+	else if (keycode == S || keycode == DOWN)
 		env->move_down = 1;
-	else if (keycode == D)
+	else if (keycode == D || keycode == RIGHT)
 		env->move_right = 1;
-	else if (keycode == A)
+	else if (keycode == A || keycode == LEFT)
 		env->move_left = 1;
 	else if (keycode == 257 || keycode == 258)	//Shift for running
 		env->move_speed = 0.3;
