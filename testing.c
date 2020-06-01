@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:56:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/03/20 18:32:35 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/01 15:39:03 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void		init_env(t_env *env)
 	env->dir.y = 0;
 	env->plane.x = 0;
 	env->plane.y = 0.66;
+	env->move_speed = 0.15;
 }
 
 void			draw_again(t_env *env)
@@ -38,7 +39,7 @@ void			draw_again(t_env *env)
 static int	hook_close(t_env *env)
 {
 	(void)env;
-	exit(EXIT_SUCCESS);
+	exit(0);
 	return (0);
 }
 
@@ -74,8 +75,10 @@ int				main(int ac, char **av)
 	{
 		init_env(env);
 		draw_again(env);
-		mlx_hook(env->win, 2, 0, event_key, env);
+		mlx_hook(env->win, 2, 0, press_key, env);
+		mlx_hook(env->win, 3, 0, release_key, env);
 		mlx_hook(env->win, 17, 0, hook_close, env);
+		mlx_loop_hook(env->mlx, event_key, env);
 		mlx_loop(env->mlx);
 	}
 	return (0);

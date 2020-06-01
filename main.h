@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:39:00 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/03/20 18:32:20 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/01 15:36:28 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ typedef struct	s_env
 	int		side;
 	int		hit;
 	int		color;
+	double	move_speed;
+	int		move_up;
+	int		move_down;
+	int		move_left;
+	int		move_right;
 	t_point	map;
 	t_point	step;
 	t_coord	delta_dist;
@@ -91,7 +96,9 @@ int		get_height(char *filepath);
 void	read_args(char *filepath, t_env *env);
 void	parse_args(char *filepath, t_env *env);
 
-int		event_key(int keycode, t_env *env);
+int		event_key(t_env *env);
+int		press_key(int keycode, t_env *env);
+int		release_key(int keycode, t_env *env);
 int		mouse_move(int x, int y, t_env *e);
 void	exit_error(int n);
 void	draw_world(t_env *env);

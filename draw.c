@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 14:27:30 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/03/20 16:00:43 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/01 12:52:34 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void			draw_world(t_env *env)
 	while (x++ < screenWidth)
     {
 		//calculate ray position and direction
-		cameraX = 2 * x / (double)screenWidth - 1; //x-coordinate in camera space
+		cameraX = 2 * x / (double)screenWidth - 1;	//x-coordinate in camera space
 		env->ray_dir.x = env->dir.x + env->plane.x * cameraX;
 		env->ray_dir.y = env->dir.y + env->plane.y * cameraX;
 		//which box of the map we're in
