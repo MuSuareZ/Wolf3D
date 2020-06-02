@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:39:00 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/02 16:12:51 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/02 18:07:13 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 # define S 1
 # define A 0
 # define D 2
-
+# define LSHIFT 257
+# define RSHIFT 258
 # define LEFT 123
 # define RIGHT 124
 # define UP 126
