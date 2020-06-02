@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 15:23:15 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/04/02 14:58:43 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/02 16:10:25 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,30 @@ void	exit_error(int n)
 
 static int	count_words(const char *line)
 {
-	int		count;
+	int		char_count;
 	int		i;
 	int		len;
-	int		numcount;
-	char	lastchar;
+	int		num_count;
+	char	last_char;
 
 	i = 0;
-	count = 0;
-	numcount = 0;
+	char_count = 0;
+	num_count = 0;
 	len = ft_strlen(line);
 	if (len > 0)
-		lastchar = line[0];
+		last_char = line[0];
 	while (i <= len)
 	{
-		if ((line[i] == ' ' || line[i] == '\0') && lastchar != ' ')
-			count++;
+		if ((line[i] == ' ' || line[i] == '\0') && last_char != ' ')
+			char_count++;
 		if (ft_isdigit(line[i]))
-			numcount++;
-		lastchar = line[i];
+			num_count++;
+		last_char = line[i];
 		i++;
 	}
-	if (numcount == 0 || count != numcount)
+	if (num_count == 0 || char_count != num_count)
 		exit_error(1);
-	return (count);
+	return (char_count);
 }
 
 int			get_height(char *filepath)

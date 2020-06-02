@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 14:27:30 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/01 12:52:34 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/02 16:13:35 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ static int		select_color(t_env *env)
 		env->color = 0xffffff;
 	else
 		env->color = 0xff66ff;
-	// if (env->side == 1)
-	// 	env->color = env->color / 2;
+	if (env->side == 1 && env->world_map[env->map.x][env->map.y] != 1)
+		env->color = env->color / 2;
 	return (env->color);
 }
 
@@ -90,40 +90,42 @@ static void		verLine(t_env *env, int x, int y0, int y1, int color)
 void			draw_world(t_env *env)
 {
 	int			x;
-	int			lineHeight;
-	double		perpWallDist;
-	double		cameraX;
+	int			line_height;
+	double		wall_dist;
+	double		camera_x;
 
 	x = 0;
-	while (x++ < screenWidth)
+	while (x++ < SCREEN_WIDTH)
     {
 		//calculate ray position and direction
-		cameraX = 2 * x / (double)screenWidth - 1;	//x-coordinate in camera space
-		env->ray_dir.x = env->dir.x + env->plane.x * cameraX;
-		env->ray_dir.y = env->dir.y + env->plane.y * cameraX;
+		camera_x = 2 * x / (double)SCREEN_WIDTH - 1;	//x-coordinate in camera space
+		env->ray_dir.x = env->dir.x + env->plane.x * camera_x;
+		env->ray_dir.y = env->dir.y + env->plane.y * camera_x;
 		//which box of the map we're in
 		env->map.x = (int)env->pos.x;
 		env->map.y = (int)env->pos.y;
 		//length of ray from one x or y-side to next x or y-side
-		env->delta_dist.x = ft_abs(1 / env->ray_dir.x);
-		env->delta_dist.y = ft_abs(1 / env->ray_dir.y);
+		env->delta_dist.x = sqrt(1 + (env->ray_dir.y * env->ray_dir.y)
+			/ (env->ray_dir.x * env->ray_dir.x));
+		env->delta_dist.y = sqrt(1 + (env->ray_dir.x * env->ray_dir.x)
+			/ (env->ray_dir.y * env->ray_dir.y));
 		check_step(env);
 		//perform DDA
 		check_hit(env);
 		//Calculate distance projected on camera direction (Euclidean distance will give fisheye effect!)
 		if (env->side == 0)
-			perpWallDist = (env->map.x - env->pos.x + (1 - env->step.x) / 2) / env->ray_dir.x;
+			wall_dist = (env->map.x - env->pos.x + (1 - env->step.x) / 2) / env->ray_dir.x;
 		else
-			perpWallDist = (env->map.y - env->pos.y + (1 - env->step.y) / 2) / env->ray_dir.y;
+			wall_dist = (env->map.y - env->pos.y + (1 - env->step.y) / 2) / env->ray_dir.y;
 		//Calculate height of line to draw on screen
-		lineHeight = (int)(screenHeight / perpWallDist);
+		line_height = (int)(SCREEN_HEIGHT / wall_dist);
 		//calculate lowest and highest pixel to fill in current stripe
-		env->draw_start = -lineHeight / 2 + screenHeight / 2;
+		env->draw_start = -line_height / 2 + SCREEN_HEIGHT / 2;
 		if(env->draw_start < 0)
 			env->draw_start = 0;
-		env->draw_end = lineHeight / 2 + screenHeight / 2;
-		if (env->draw_end >= screenHeight)
-			env->draw_end = screenHeight - 1;
+		env->draw_end = line_height / 2 + SCREEN_HEIGHT / 2;
+		if (env->draw_end >= SCREEN_HEIGHT)
+			env->draw_end = SCREEN_HEIGHT - 1;
 		//draw the pixels of the stripe as a vertical line
 		verLine(env, x, env->draw_start, env->draw_end, select_color(env));
 	}

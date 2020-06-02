@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:56:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/01 15:39:03 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/02 16:13:47 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void		init_env(t_env *env)
 {
 	if ((env->mlx = mlx_init()) == (void *)0)
 		return ;
-	env->win = mlx_new_window(env->mlx, screenWidth, screenHeight, "Raycasting");
+	env->win = mlx_new_window(env->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Raycasting");
 	if (env->win == (void *)0)
 		return ;
 	init_img(env);

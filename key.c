@@ -6,22 +6,11 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:56:32 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/01 16:19:28 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/02 16:11:52 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-int			mouse_move(int x, int y, t_env *e)
-{
-	if ((x >= 0 && x <= screenWidth) && (y >= 0 && y <= screenHeight))
-	{
-		e->pos.x = x;
-		e->pos.y = y;
-	}
-	draw_again(e);
-	return (1);
-}
 
 int		release_key(int keycode, t_env *env)
 {
@@ -57,8 +46,8 @@ int		press_key(int keycode, t_env *env)
 
 int		event_key(t_env *env)
 {
-	double	oldDirX;
-	double	oldPlaneX;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	if (env->move_up == 1)
     {
@@ -77,22 +66,22 @@ int		event_key(t_env *env)
     if (env->move_left == 1)
     {
         //both camera direction and camera plane must be rotated
-		oldDirX = env->dir.x;
+		old_dir_x = env->dir.x;
 		env->dir.x = env->dir.x * cos(0.04) - env->dir.y * sin(0.04);
-		env->dir.y = oldDirX * sin(0.04) + env->dir.y * cos(0.04);
-		oldPlaneX = env->plane.x;
+		env->dir.y = old_dir_x * sin(0.04) + env->dir.y * cos(0.04);
+		old_plane_x = env->plane.x;
 		env->plane.x = env->plane.x * cos(0.04) - env->plane.y * sin(0.04);
-		env->plane.y = oldPlaneX * sin(0.04) + env->plane.y * cos(0.04);
+		env->plane.y = old_plane_x * sin(0.04) + env->plane.y * cos(0.04);
     }
     if (env->move_right == 1)
     {
         //both camera direction and camera plane must be rotated
-		oldDirX = env->dir.x;
+		old_dir_x = env->dir.x;
 		env->dir.x = env->dir.x * cos(-0.04) - env->dir.y * sin(-0.04);
-		env->dir.y = oldDirX * sin(-0.04) + env->dir.y * cos(-0.04);
-		oldPlaneX = env->plane.x;
+		env->dir.y = old_dir_x * sin(-0.04) + env->dir.y * cos(-0.04);
+		old_plane_x = env->plane.x;
 		env->plane.x = env->plane.x * cos(-0.04) - env->plane.y * sin(-0.04);
-		env->plane.y = oldPlaneX * sin(-0.04) + env->plane.y * cos(-0.04);
+		env->plane.y = old_plane_x * sin(-0.04) + env->plane.y * cos(-0.04);
     }
 	draw_again(env);
 	return (1);

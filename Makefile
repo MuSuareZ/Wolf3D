@@ -6,7 +6,7 @@
 #    By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 15:37:03 by msuarez-          #+#    #+#              #
-#    Updated: 2020/03/16 16:38:34 by msuarez-         ###   ########.fr        #
+#    Updated: 2020/06/02 14:11:32 by msuarez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 		@make -C libft/
-		@cc -I/usr/local/include $(SRC) $(LIBFT) \
+		@cc $(FLAGS) -I/usr/local/include $(SRC) $(LIBFT) \
 		-L/usr/local/lib -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:

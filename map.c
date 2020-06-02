@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 15:32:37 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/03/20 18:32:49 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/02 16:00:48 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void			parse_args(char *filepath, t_env *env)
 
 static void		check_mid(t_env *env)
 {
-	int		x;
 	int		y;
 	int		limit;
 
