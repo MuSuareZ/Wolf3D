@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:39:00 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/03 14:08:29 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/03 15:46:18 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct	s_point
 	int		y;
 }				t_point;
 
-
 typedef struct	s_image
 {
 	void	*image;
@@ -61,16 +60,31 @@ typedef struct	s_image
 	int		endian;
 }				t_image;
 
+typedef struct	s_player
+{
+	int		move_up;
+	int		move_down;
+	int		move_left;
+	int		move_right;
+	double	move_speed;
+	t_coord pos;
+}				t_player;
+
+typedef	struct	s_world
+{
+	int		**map;
+	int		width;
+	int		height;
+}				t_world;
+
+
 typedef struct	s_env
 {
 	void	*mlx;
 	void	*win;
 	int		thread_id;
 	t_image	img;
-	t_coord	mouse;
-
-	int		map_width;
-	int		map_height;
+	t_player	player;
 	int		draw_start;
 	int		draw_end;
 	int		flag_zero;
@@ -78,20 +92,14 @@ typedef struct	s_env
 	int		side;
 	int		hit;
 	int		color;
-	double	move_speed;
-	int		move_up;
-	int		move_down;
-	int		move_left;
-	int		move_right;
 	t_point	map;
 	t_point	step;
 	t_coord	delta_dist;
 	t_coord	ray_dir;
 	t_coord	side_dist;
-	t_coord pos;
 	t_coord dir;
 	t_coord plane;
-	int		**world_map;
+	t_world	world_map;
 }				t_env;
 
 int		get_width(char *filepath);

@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:56:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/03 14:27:06 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/03 15:37:53 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void		init_env(t_env *env)
 	env->dir.y = 0;
 	env->plane.x = 0;
 	env->plane.y = 0.66;
-	env->move_speed = 0.15;
+	env->player.move_speed = 0.15;
 	env->thread_id = 0;
 }
 
