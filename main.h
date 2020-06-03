@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:39:00 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/02 18:07:13 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/03 14:08:29 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@
 # include <mlx.h>
 # include "libft/libft.h"
 
-# define ESC 53
+# define THREADS 8
 # define SCREEN_WIDTH 1000
 # define SCREEN_HEIGHT 1000
 
+# define ESC 53
 # define W 13
 # define S 1
 # define A 0
@@ -64,6 +65,7 @@ typedef struct	s_env
 {
 	void	*mlx;
 	void	*win;
+	int		thread_id;
 	t_image	img;
 	t_coord	mouse;
 
@@ -102,7 +104,7 @@ int		press_key(int keycode, t_env *env);
 int		release_key(int keycode, t_env *env);
 int		mouse_move(int x, int y, t_env *e);
 void	exit_error(int n);
-void	draw_world(t_env *env);
+void	*draw_world(void *env_ptr);
 void	clear_img(t_env *env);
 void	img_pixel_put(t_env *env, double x, double y, int color);
 void	init_img(t_env *env);

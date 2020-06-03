@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:56:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/02 16:13:47 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/03 14:09:01 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,7 @@ static void		init_env(t_env *env)
 	env->plane.x = 0;
 	env->plane.y = 0.66;
 	env->move_speed = 0.15;
-}
-
-void			draw_again(t_env *env)
-{
-	clear_img(env);
-	draw_world(env);
-	mlx_put_image_to_window(env->mlx, env->win, env->img.image, 0, 0);
+	env->thread_id = 0;
 }
 
 static int	hook_close(t_env *env)

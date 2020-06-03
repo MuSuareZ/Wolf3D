@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 14:27:30 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/02 16:13:35 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/03 14:17:53 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,17 @@ static void		verLine(t_env *env, int x, int y0, int y1, int color)
 	}
 }
 
-void			draw_world(t_env *env)
+void			*draw_world(void *env_ptr)
 {
+	t_env		*env;
 	int			x;
 	int			line_height;
 	double		wall_dist;
 	double		camera_x;
 
-	x = 0;
-	while (x++ < SCREEN_WIDTH)
+	env = (t_env *)env_ptr;
+	x = env->thread_id;
+	while (x < SCREEN_WIDTH)
     {
 		//calculate ray position and direction
 		camera_x = 2 * x / (double)SCREEN_WIDTH - 1;	//x-coordinate in camera space
@@ -128,5 +130,7 @@ void			draw_world(t_env *env)
 			env->draw_end = SCREEN_HEIGHT - 1;
 		//draw the pixels of the stripe as a vertical line
 		verLine(env, x, env->draw_start, env->draw_end, select_color(env));
+		x += THREADS;
 	}
+	return (NULL);
 }
