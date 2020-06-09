@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:56:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/03 15:37:53 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:18:28 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void		init_env(t_env *env)
 {
 	if ((env->mlx = mlx_init()) == (void *)0)
 		return ;
-	env->win = mlx_new_window(env->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Raycasting");
+	env->win = mlx_new_window(env->mlx, SCREEN_WIDTH,
+				SCREEN_HEIGHT, "Raycasting");
 	if (env->win == (void *)0)
 		return ;
 	init_img(env);
@@ -28,9 +29,11 @@ static void		init_env(t_env *env)
 	env->plane.y = 0.66;
 	env->player.move_speed = 0.15;
 	env->thread_id = 0;
+	env->line_height = 0;
+	env->wall_dist = 0.0;
 }
 
-static int	hook_close(t_env *env)
+static int		hook_close(t_env *env)
 {
 	(void)env;
 	exit(0);
@@ -39,7 +42,7 @@ static int	hook_close(t_env *env)
 
 static int		validate_map(int ac, char **av, t_env *env)
 {
-	int fd;
+	int		fd;
 
 	fd = open(av[1], O_RDONLY);
 	if (ac != 2)
@@ -48,7 +51,7 @@ static int		validate_map(int ac, char **av, t_env *env)
 		ft_putendl("usage: ./wolf3d testmap");
 		exit(0);
 	}
-	if (fd < 0)
+	else if (fd < 0)
 	{
 		ft_putendl("The file is invalid or does not exist!");
 		exit(0);
@@ -64,7 +67,7 @@ int				main(int ac, char **av)
 	t_env	*env;
 
 	if (!(env = (t_env*)malloc(sizeof(t_env))))
-			return (-1);
+		return (-1);
 	if (validate_map(ac, av, env) == 1)
 	{
 		init_env(env);

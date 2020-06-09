@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 14:16:53 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/03 14:18:01 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/09 15:41:09 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		copy_node(t_env *copy, t_env *node, int i)
 	copy->thread_id = i;
 }
 
-static void			*call_draw(void *data)
+static void		*call_draw(void *data)
 {
 	t_env	*node;
 

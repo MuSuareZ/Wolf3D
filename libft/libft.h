@@ -6,13 +6,12 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:37:59 by msuarez-          #+#    #+#             */
-/*   Updated: 2019/12/05 18:31:17 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/09 15:45:39 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define WHITESPACES(x) x == ' ' || x == '\t' || x == '\n'
 # define INTMIN -2147483648
 # define INTMAX 2147483647
 # include <string.h>

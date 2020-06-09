@@ -6,13 +6,13 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 15:23:15 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/02 16:10:25 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/09 15:42:39 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	exit_error(int n)
+void		exit_error(int n)
 {
 	if (n == 1)
 		ft_putendl("Invalid map! Check the number of rows/cols are the same.");
@@ -67,6 +67,11 @@ int			get_height(char *filepath)
 		free(line);
 		line = 0;
 	}
+	if (ret == 0)
+	{
+		printf("Error: No height, empty map?\n");
+		exit(0);
+	}
 	close(fd);
 	return (ret);
 }
@@ -89,6 +94,11 @@ int			get_width(char *filepath)
 			exit_error(1);
 		free(line);
 		line = 0;
+	}
+	if (ret == 0)
+	{
+		printf("Error: No width, empty map?\n");
+		exit(0);
 	}
 	close(fd);
 	return (ret);

@@ -6,13 +6,13 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:56:32 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/03 15:48:22 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:43:43 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int		release_key(int keycode, t_env *env)
+int				release_key(int keycode, t_env *env)
 {
 	if (keycode == W || keycode == UP)
 		env->player.move_up = 0;
@@ -27,7 +27,7 @@ int		release_key(int keycode, t_env *env)
 	return (0);
 }
 
-int		press_key(int keycode, t_env *env)
+int				press_key(int keycode, t_env *env)
 {
 	if (keycode == W || keycode == UP)
 		env->player.move_up = 1;
@@ -44,53 +44,54 @@ int		press_key(int keycode, t_env *env)
 	return (0);
 }
 
-int		event_key(t_env *env)
+static void		side_key(t_env *env)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 
-	if (env->player.move_up == 1)
-    {
-        if(env->world_map.map[(int)(env->player.pos.x + env->dir.x *
-		env->player.move_speed)][(int)env->player.pos.y] == 0)
-            env->player.pos.x += env->dir.x * env->player.move_speed;
-		if(env->world_map.map[(int)env->player.pos.x][(int)(env->player.pos.y +
-		env->dir.y * env->player.move_speed)] == 0)
-            env->player.pos.y += env->dir.y * env->player.move_speed;
-    }
-    if (env->player.move_down == 1)
-    {
-        if(env->world_map.map[(int)(env->player.pos.x - env->dir.x *
-		0.15)][(int)env->player.pos.y] == 0)
-            env->player.pos.x -= env->dir.x * 0.15;
-		if(env->world_map.map[(int)env->player.pos.x][(int)(env->player.pos.y -
-		env->dir.y * 0.15)] == 0)
-            env->player.pos.y -= env->dir.y * 0.15;
-    }
-    if (env->player.move_left == 1)
-    {
-        /*
-			both camera direction and camera plane must be rotated
-		*/
+	old_plane_x = 0.0;
+	old_dir_x = 0.0;
+	if (env->player.move_left == 1)
+	{
 		old_dir_x = env->dir.x;
 		env->dir.x = env->dir.x * cos(0.04) - env->dir.y * sin(0.04);
 		env->dir.y = old_dir_x * sin(0.04) + env->dir.y * cos(0.04);
 		old_plane_x = env->plane.x;
 		env->plane.x = env->plane.x * cos(0.04) - env->plane.y * sin(0.04);
 		env->plane.y = old_plane_x * sin(0.04) + env->plane.y * cos(0.04);
-    }
-    if (env->player.move_right == 1)
-    {
-        /*
-			both camera direction and camera plane must be rotated
-		*/
+	}
+	if (env->player.move_right == 1)
+	{
 		old_dir_x = env->dir.x;
 		env->dir.x = env->dir.x * cos(-0.04) - env->dir.y * sin(-0.04);
 		env->dir.y = old_dir_x * sin(-0.04) + env->dir.y * cos(-0.04);
 		old_plane_x = env->plane.x;
 		env->plane.x = env->plane.x * cos(-0.04) - env->plane.y * sin(-0.04);
 		env->plane.y = old_plane_x * sin(-0.04) + env->plane.y * cos(-0.04);
-    }
+	}
+}
+
+int				event_key(t_env *env)
+{
+	if (env->player.move_up == 1)
+	{
+		if (env->world_map.map[(int)(env->player.pos.x + env->dir.x *
+		env->player.move_speed)][(int)env->player.pos.y] == 0)
+			env->player.pos.x += env->dir.x * env->player.move_speed;
+		if (env->world_map.map[(int)env->player.pos.x][(int)(env->player.pos.y +
+		env->dir.y * env->player.move_speed)] == 0)
+			env->player.pos.y += env->dir.y * env->player.move_speed;
+	}
+	if (env->player.move_down == 1)
+	{
+		if (env->world_map.map[(int)(env->player.pos.x - env->dir.x *
+		0.15)][(int)env->player.pos.y] == 0)
+			env->player.pos.x -= env->dir.x * 0.15;
+		if (env->world_map.map[(int)env->player.pos.x][(int)(env->player.pos.y -
+		env->dir.y * 0.15)] == 0)
+			env->player.pos.y -= env->dir.y * 0.15;
+	}
+	side_key(env);
 	draw_again(env);
 	return (1);
 }

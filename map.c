@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 15:32:37 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/03 15:46:55 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/09 16:19:04 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void			parse_args(char *filepath, t_env *env)
 	env->world_map.map = (int **)malloc(sizeof(int *) * env->world_map.height);
 	while (index < env->world_map.height)
 	{
-		env->world_map.map[index] = (int *)malloc(sizeof(int) * env->world_map.width);
+		env->world_map.map[index] = (int *)malloc(sizeof(int) *
+									env->world_map.width);
 		index++;
 	}
 }
@@ -45,7 +46,7 @@ static void		check_mid(t_env *env)
 
 static void		check_bottom(t_env *env)
 {
-	int		limit;
+	int			limit;
 	int			x;
 
 	x = 0;
@@ -61,7 +62,6 @@ static void		check_bottom(t_env *env)
 
 static void		assign_z(int x, int y, char **line_split, t_env *env)
 {
-	
 	while (*line_split != NULL)
 	{
 		env->world_map.map[y][x] = ft_atoi(*line_split);
