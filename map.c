@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 15:32:37 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/09 16:19:04 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/11 14:21:34 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ static void		assign_z(int x, int y, char **line_split, t_env *env)
 			env->flag_one = 1;
 		if (env->flag_zero == 0 && env->world_map.map[y][x] == 0)
 		{
-			env->player.pos.x = x + 0.5;
-			env->player.pos.y = y + 0.5;
+			env->player.pos.x = y + 0.5;
+			env->player.pos.y = x + 0.5;
 			env->flag_zero = 1;
 		}
 		free(*line_split);
