@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 15:32:37 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/11 14:21:34 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/12 16:42:30 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void		assign_z(int x, int y, char **line_split, t_env *env)
 		env->world_map.map[y][x] = ft_atoi(*line_split);
 		if (env->world_map.map[0][x] == 0)
 			exit_error(3);
-		if (env->world_map.map[y][x] == 1)
+		if (env->world_map.map[y][x] > 0 && env->world_map.map[y][x] < 10)
 			env->flag_one = 1;
 		if (env->flag_zero == 0 && env->world_map.map[y][x] == 0)
 		{

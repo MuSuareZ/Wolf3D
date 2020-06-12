@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:56:32 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/09 17:43:43 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/11 20:07:49 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ int				event_key(t_env *env)
 	if (env->player.move_down == 1)
 	{
 		if (env->world_map.map[(int)(env->player.pos.x - env->dir.x *
-		0.15)][(int)env->player.pos.y] == 0)
-			env->player.pos.x -= env->dir.x * 0.15;
+		env->player.move_speed)][(int)env->player.pos.y] == 0)
+			env->player.pos.x -= env->dir.x * env->player.move_speed;
 		if (env->world_map.map[(int)env->player.pos.x][(int)(env->player.pos.y -
-		env->dir.y * 0.15)] == 0)
-			env->player.pos.y -= env->dir.y * 0.15;
+		env->dir.y * env->player.move_speed)] == 0)
+			env->player.pos.y -= env->dir.y * env->player.move_speed;
 	}
 	side_key(env);
 	draw_again(env);

@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:39:00 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/09 16:55:09 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/12 15:31:05 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <mlx.h>
 # include "libft/libft.h"
 
-# define THREADS 8
+# define THREADS 64
 # define SCREEN_WIDTH 1000
 # define SCREEN_HEIGHT 1000
 
@@ -82,6 +82,8 @@ typedef struct	s_env
 	void		*mlx;
 	void		*win;
 	int			thread_id;
+	int			x_text;
+	int			y_text;
 	t_image		tex[9];
 	t_image		img;
 	t_player	player;

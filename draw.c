@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 14:27:30 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/09 17:11:34 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/12 15:59:24 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ static void		draw_points(t_env *env)
 static int		select_color(t_env *env)
 {
 	if (env->world_map.map[env->map.x][env->map.y] == 1)
-		env->color = 0xff0000;
-	else if (env->world_map.map[env->map.x][env->map.y] == 2)
 		env->color = 0x008000;
-	else if (env->world_map.map[env->map.x][env->map.y] == 3)
+	else if (env->world_map.map[env->map.x][env->map.y] == 2)
 		env->color = 0x0000ff;
-	else if (env->world_map.map[env->map.x][env->map.y] == 4)
+	else if (env->world_map.map[env->map.x][env->map.y] == 3)
 		env->color = 0xffffff;
+	else if (env->world_map.map[env->map.x][env->map.y] == 4)
+		env->color = 0x808080;
 	else
 		env->color = 0xff66ff;
-	if (env->side == 1 && env->world_map.map[env->map.x][env->map.y] != 1)
+	if (env->side == 1 && env->color != 0xff66ff)
 		env->color = env->color / 2;
 	return (env->color);
 }
