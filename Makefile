@@ -6,13 +6,13 @@
 #    By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 15:37:03 by msuarez-          #+#    #+#              #
-#    Updated: 2020/06/12 15:38:23 by msuarez-         ###   ########.fr        #
+#    Updated: 2020/06/12 17:07:00 by msuarez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = wolf3d
 
-SRC = main.c getinfo.c map.c key.c image.c draw.c threads.c dda.c texture.c
+SRC = main.c getinfo.c map.c key.c image.c draw.c threads.c dda.c
 
 OBJECTS = $(subst .c,.o,$(SRC))
 
