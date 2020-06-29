@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:39:00 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/12 15:31:05 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/29 17:28:53 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define RIGHT 124
 # define UP 126
 # define DOWN 125
+# define NUM1 18
 
 typedef	struct	s_coord
 {
@@ -81,15 +82,18 @@ typedef struct	s_env
 {
 	void		*mlx;
 	void		*win;
+	int			id;
 	int			thread_id;
 	int			x_text;
 	int			y_text;
 	t_image		tex[9];
 	t_image		img;
 	t_player	player;
+	int			x;
 	int			texture;
 	int			line_height;
 	double		wall_dist;
+	double		camera_x;
 	int			draw_start;
 	int			draw_end;
 	int			flag_zero;
@@ -113,16 +117,15 @@ int				event_key(t_env *env);
 int				press_key(int keycode, t_env *env);
 int				release_key(int keycode, t_env *env);
 int				mouse_move(int x, int y, t_env *e);
+void			raycast_init(t_env *env, int x);
 void			check_step(t_env *env);
 void			check_hit(t_env *env);
 void			read_args(char *filepath, t_env *env);
 void			parse_args(char *filepath, t_env *env);
 void			load_texture(t_env *env);
 void			exit_error(int n);
-void			*draw_world(void *env_ptr);
-void			clear_img(t_env *env);
-void			img_pixel_put(t_env *env, double x, double y, int color);
+void			draw_world(t_env *env);
+void			img_pixel_put(t_env *env, int x, int y, int color);
 void			init_img(t_env *env);
-void			draw_again(t_env *env);
 
 #endif

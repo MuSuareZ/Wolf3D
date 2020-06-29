@@ -6,41 +6,32 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:07:47 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/04 12:00:53 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/29 17:28:43 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static int		idx(int row, int col, int dim)
-{
-	return (row * dim + col);
-}
-
 void			init_img(t_env *env)
 {
-	t_image	*img;
-
-	img = &env->img;
-	img->image = mlx_new_image(env->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	img->ptr = mlx_get_data_addr(img->image, &img->bpp, &img->line_s,
-								&img->endian);
-	img->bpp /= 8;
+	env->img.image = mlx_new_image(env->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	env->img.ptr = mlx_get_data_addr(env->img.image, &env->img.bpp,
+		&env->img.line_s, &env->img.endian);
+	env->img.bpp /= 8;
 }
 
-void			img_pixel_put(t_env *env, double x, double y, int color)
+void			img_pixel_put(t_env *env, int x, int y, int color)
 {
-	t_image *img;
-
-	img = &(env->img);
-	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
-		*(int *)(img->ptr + (int)(idx(y, x, SCREEN_WIDTH) * img->bpp)) = color;
-}
-
-void			clear_img(t_env *env)
-{
-	t_image *img;
-
-	img = &(env->img);
-	ft_bzero(img->ptr, (SCREEN_WIDTH * SCREEN_HEIGHT) * img->bpp);
+	if (env->texture == 1 && x < SCREEN_WIDTH && y < SCREEN_HEIGHT)
+	{
+		env->y_text = abs((((y * 256 - SCREEN_HEIGHT * 128 +
+			env->line_height * 128) * 64) / env->line_height) / 256);
+		ft_memcpy(env->img.ptr + 4 * SCREEN_WIDTH * y + x * 4,
+			&env->tex[env->id].ptr[env->y_text % 64 *
+				env->tex[env->id].line_s + env->x_text %
+					64 * env->tex[env->id].bpp / 8], sizeof(int));
+	}
+	else if (x < SCREEN_WIDTH && y < SCREEN_HEIGHT)
+		ft_memcpy(env->img.ptr + 4 * SCREEN_WIDTH * y + x * 4,
+				&color, sizeof(int));
 }

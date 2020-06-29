@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 14:27:30 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/12 15:59:24 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/29 17:31:04 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,57 +29,74 @@ static void		draw_points(t_env *env)
 		env->draw_end = SCREEN_HEIGHT - 1;
 }
 
-static int		select_color(t_env *env)
+void			draw_wall(int x, t_env *env)
 {
-	if (env->world_map.map[env->map.x][env->map.y] == 1)
-		env->color = 0x008000;
-	else if (env->world_map.map[env->map.x][env->map.y] == 2)
-		env->color = 0x0000ff;
-	else if (env->world_map.map[env->map.x][env->map.y] == 3)
-		env->color = 0xffffff;
-	else if (env->world_map.map[env->map.x][env->map.y] == 4)
-		env->color = 0x808080;
-	else
-		env->color = 0xff66ff;
-	if (env->side == 1 && env->color != 0xff66ff)
-		env->color = env->color / 2;
-	return (env->color);
+	if (env->texture == 1)
+	{
+		env->id = env->world_map.map[env->map.x][env->map.y];
+		env->x_text = (int)(env->wall_dist * (double)(64));
+		if (env->side == 0 && env->ray_dir.x > 0)
+			env->x_text = 64 - env->x_text - 1;
+		if (env->side == 1 && env->ray_dir.y < 0)
+			env->x_text = 64 - env->x_text - 1;
+		env->x_text = abs(env->x_text);
+	}
+	while (++env->draw_start != env->draw_end)
+		img_pixel_put(env, x, env->draw_start, env->color);
 }
 
-static void		ver_line(t_env *env, int x, int y0, int y1)
+void			draw_sky(t_env *env)
 {
-	select_color(env);
-	while (y0 != y1)
+	env->x_text = 0;
+	while (env->x_text < SCREEN_WIDTH)
 	{
-		img_pixel_put(env, x, y0, env->color);
-		y0++;
+		env->y_text = 0;
+		while (env->y_text < SCREEN_HEIGHT / 2)
+		{
+			ft_memcpy(env->img.ptr + 4 * SCREEN_WIDTH * env->y_text +
+				env->x_text * 4, &env->tex[6].ptr[env->y_text % 512 *
+					env->tex[6].line_s + env->x_text % 512 *
+						env->tex[6].bpp / 8], sizeof(int));
+			env->y_text++;
+		}
+		env->x_text++;
 	}
 }
 
-void			*draw_world(void *env_ptr)
+void			draw_floor(t_env *env, int x)
 {
-	t_env		*env;
-	int			x;
-	double		camera_x;
+	int		y;
 
-	env = (t_env *)env_ptr;
-	x = env->thread_id;
-	while (x < SCREEN_WIDTH)
+	if (env->draw_end > 0)
 	{
-		camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
-		env->ray_dir.x = env->dir.x + env->plane.x * camera_x;
-		env->ray_dir.y = env->dir.y + env->plane.y * camera_x;
-		env->map.x = (int)env->player.pos.x;
-		env->map.y = (int)env->player.pos.y;
-		env->delta_dist.x = sqrt(1 + (env->ray_dir.y * env->ray_dir.y)
-			/ (env->ray_dir.x * env->ray_dir.x));
-		env->delta_dist.y = sqrt(1 + (env->ray_dir.x * env->ray_dir.x)
-			/ (env->ray_dir.y * env->ray_dir.y));
+		env->color = 0x333333;
+		y = env->draw_end - 1;
+		if (x < SCREEN_WIDTH && y < SCREEN_HEIGHT)
+			while (++y < SCREEN_HEIGHT)
+				ft_memcpy(env->img.ptr + 4 * SCREEN_WIDTH * y + x * 4,
+						&env->color, sizeof(int));
+	}
+}
+
+void			draw_world(t_env *env)
+{
+	env->x = 0;
+	init_img(env);
+	if (env->texture == 1)
+		draw_sky(env);
+	while (env->x++ < SCREEN_WIDTH)
+	{
+		raycast_init(env, env->x);
 		check_step(env);
 		check_hit(env);
 		draw_points(env);
-		ver_line(env, x, env->draw_start, env->draw_end);
-		x += THREADS;
+		if (env->side == 1)
+			env->color = 0x008000;
+		else
+			env->color = 0x00FF00;
+		draw_wall(env->x, env);
+		draw_floor(env, env->x);
 	}
-	return (NULL);
+	mlx_put_image_to_window(env->mlx, env->win, env->img.image, 0, 0);
+	mlx_destroy_image(env->mlx, env->img.image);
 }

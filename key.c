@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:56:32 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/11 20:07:49 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/29 16:47:29 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int				press_key(int keycode, t_env *env)
 		env->player.move_left = 1;
 	else if (keycode == LSHIFT || keycode == RSHIFT)
 		env->player.move_speed = 0.3;
+	else if (keycode == NUM1)
+		env->texture = 1 - env->texture;
 	else if (keycode == ESC)
 		exit(0);
 	return (0);
@@ -92,6 +94,6 @@ int				event_key(t_env *env)
 			env->player.pos.y -= env->dir.y * env->player.move_speed;
 	}
 	side_key(env);
-	draw_again(env);
+	draw_world((void *)env);
 	return (1);
 }

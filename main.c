@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:56:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/12 16:49:47 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/06/29 17:26:11 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ static void		init_env(t_env *env)
 	if ((env->mlx = mlx_init()) == (void *)0)
 		return ;
 	env->win = mlx_new_window(env->mlx, SCREEN_WIDTH,
-				SCREEN_HEIGHT, "Wolf3D msuarez-");
+				SCREEN_HEIGHT, "msuarez- Wolf3D");
 	if (env->win == (void *)0)
 		return ;
-	init_img(env);
+	load_texture(env);
+	env->texture = 0;
 	env->flag_zero = 0;
 	env->flag_one = 0;
 	env->dir.x = -1;
@@ -62,6 +63,19 @@ static int		validate_map(int ac, char **av, t_env *env)
 	return (1);
 }
 
+void			raycast_init(t_env *env, int x)
+{
+	env->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
+	env->ray_dir.x = env->dir.x + env->plane.x * env->camera_x;
+	env->ray_dir.y = env->dir.y + env->plane.y * env->camera_x;
+	env->map.x = (int)env->player.pos.x;
+	env->map.y = (int)env->player.pos.y;
+	env->delta_dist.x = sqrt(1 + (env->ray_dir.y * env->ray_dir.y)
+		/ (env->ray_dir.x * env->ray_dir.x));
+	env->delta_dist.y = sqrt(1 + (env->ray_dir.x * env->ray_dir.x)
+		/ (env->ray_dir.y * env->ray_dir.y));
+}
+
 int				main(int ac, char **av)
 {
 	t_env	*env;
@@ -71,7 +85,7 @@ int				main(int ac, char **av)
 	if (validate_map(ac, av, env) == 1)
 	{
 		init_env(env);
-		draw_again(env);
+		draw_world(env);
 		mlx_hook(env->win, 2, 0, press_key, env);
 		mlx_hook(env->win, 3, 0, release_key, env);
 		mlx_hook(env->win, 17, 0, hook_close, env);
