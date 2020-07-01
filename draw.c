@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 14:27:30 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/29 17:31:04 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/01 16:12:56 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 static void		draw_points(t_env *env)
 {
-	if (env->side == 0)
-		env->wall_dist = (env->map.x - env->player.pos.x +
-		(1 - env->step.x) / 2) / env->ray_dir.x;
-	else
-		env->wall_dist = (env->map.y - env->player.pos.y +
-		(1 - env->step.y) / 2) / env->ray_dir.y;
 	env->line_height = (int)(SCREEN_HEIGHT / env->wall_dist);
 	env->draw_start = -env->line_height / 2 + SCREEN_HEIGHT / 2;
 	if (env->draw_start < 0)
@@ -34,6 +28,10 @@ void			draw_wall(int x, t_env *env)
 	if (env->texture == 1)
 	{
 		env->id = env->world_map.map[env->map.x][env->map.y];
+		if (env->side == 0)
+			env->wall_dist = env->ray_pos.y + env->wall_dist * env->ray_dir.y;
+		else
+			env->wall_dist = env->ray_pos.x + env->wall_dist * env->ray_dir.x;
 		env->x_text = (int)(env->wall_dist * (double)(64));
 		if (env->side == 0 && env->ray_dir.x > 0)
 			env->x_text = 64 - env->x_text - 1;
@@ -80,15 +78,13 @@ void			draw_floor(t_env *env, int x)
 
 void			draw_world(t_env *env)
 {
-	env->x = 0;
 	init_img(env);
 	if (env->texture == 1)
 		draw_sky(env);
+	env->x = 0;
 	while (env->x++ < SCREEN_WIDTH)
 	{
 		raycast_init(env, env->x);
-		check_step(env);
-		check_hit(env);
 		draw_points(env);
 		if (env->side == 1)
 			env->color = 0x008000;

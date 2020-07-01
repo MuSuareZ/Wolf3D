@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:56:32 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/29 16:47:29 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/01 16:26:47 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,28 +48,24 @@ int				press_key(int keycode, t_env *env)
 
 static void		side_key(t_env *env)
 {
-	double	old_dir_x;
-	double	old_plane_x;
-
-	old_plane_x = 0.0;
-	old_dir_x = 0.0;
 	if (env->player.move_left == 1)
 	{
-		old_dir_x = env->dir.x;
+		env->old_dir_x = env->dir.x;
 		env->dir.x = env->dir.x * cos(0.04) - env->dir.y * sin(0.04);
-		env->dir.y = old_dir_x * sin(0.04) + env->dir.y * cos(0.04);
-		old_plane_x = env->plane.x;
+		env->dir.y = env->old_dir_x * sin(0.04) + env->dir.y * cos(0.04);
+		env->old_plane_x = env->plane.x;
 		env->plane.x = env->plane.x * cos(0.04) - env->plane.y * sin(0.04);
-		env->plane.y = old_plane_x * sin(0.04) + env->plane.y * cos(0.04);
+		env->plane.y = env->old_plane_x * sin(0.04) + env->plane.y * cos(0.04);
 	}
 	if (env->player.move_right == 1)
 	{
-		old_dir_x = env->dir.x;
+		env->old_dir_x = env->dir.x;
 		env->dir.x = env->dir.x * cos(-0.04) - env->dir.y * sin(-0.04);
-		env->dir.y = old_dir_x * sin(-0.04) + env->dir.y * cos(-0.04);
-		old_plane_x = env->plane.x;
+		env->dir.y = env->old_dir_x * sin(-0.04) + env->dir.y * cos(-0.04);
+		env->old_plane_x = env->plane.x;
 		env->plane.x = env->plane.x * cos(-0.04) - env->plane.y * sin(-0.04);
-		env->plane.y = old_plane_x * sin(-0.04) + env->plane.y * cos(-0.04);
+		env->plane.y = env->old_plane_x * sin(-0.04) +
+					env->plane.y * cos(-0.04);
 	}
 }
 
@@ -94,6 +90,6 @@ int				event_key(t_env *env)
 			env->player.pos.y -= env->dir.y * env->player.move_speed;
 	}
 	side_key(env);
-	draw_world((void *)env);
+	draw_world(env);
 	return (1);
 }

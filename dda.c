@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 16:43:19 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/09 16:44:29 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/01 16:22:47 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,23 @@ void		check_step(t_env *env)
 	if (env->ray_dir.x < 0)
 	{
 		env->step.x = -1;
-		env->side_dist.x = (env->player.pos.x - env->map.x) * env->delta_dist.x;
+		env->side_dist.x = (env->ray_pos.x - env->map.x) * env->delta_dist.x;
 	}
 	else
 	{
 		env->step.x = 1;
-		env->side_dist.x = (env->map.x + 1.0 - env->player.pos.x) *
+		env->side_dist.x = (env->map.x + 1.0 - env->ray_pos.x) *
 							env->delta_dist.x;
 	}
 	if (env->ray_dir.y < 0)
 	{
 		env->step.y = -1;
-		env->side_dist.y = (env->player.pos.y - env->map.y) * env->delta_dist.y;
+		env->side_dist.y = (env->ray_pos.y - env->map.y) * env->delta_dist.y;
 	}
 	else
 	{
 		env->step.y = 1;
-		env->side_dist.y = (env->map.y + 1.0 - env->player.pos.y) *
+		env->side_dist.y = (env->map.y + 1.0 - env->ray_pos.y) *
 							env->delta_dist.y;
 	}
 }

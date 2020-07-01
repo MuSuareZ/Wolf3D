@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:56:05 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/29 17:26:11 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/01 16:23:11 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void		init_env(t_env *env)
 	if (env->win == (void *)0)
 		return ;
 	load_texture(env);
+	env->old_dir_x = 0.0;
+	env->old_plane_x = 0.0;
 	env->texture = 0;
 	env->flag_zero = 0;
 	env->flag_one = 0;
@@ -29,7 +31,6 @@ static void		init_env(t_env *env)
 	env->plane.x = 0;
 	env->plane.y = 0.66;
 	env->player.move_speed = 0.15;
-	env->thread_id = 0;
 	env->line_height = 0;
 	env->wall_dist = 0.0;
 }
@@ -68,12 +69,22 @@ void			raycast_init(t_env *env, int x)
 	env->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
 	env->ray_dir.x = env->dir.x + env->plane.x * env->camera_x;
 	env->ray_dir.y = env->dir.y + env->plane.y * env->camera_x;
-	env->map.x = (int)env->player.pos.x;
-	env->map.y = (int)env->player.pos.y;
+	env->ray_pos.x = env->player.pos.x;
+	env->ray_pos.y = env->player.pos.y;
+	env->map.x = (int)env->ray_pos.x;
+	env->map.y = (int)env->ray_pos.y;
 	env->delta_dist.x = sqrt(1 + (env->ray_dir.y * env->ray_dir.y)
 		/ (env->ray_dir.x * env->ray_dir.x));
 	env->delta_dist.y = sqrt(1 + (env->ray_dir.x * env->ray_dir.x)
 		/ (env->ray_dir.y * env->ray_dir.y));
+	check_step(env);
+	check_hit(env);
+	if (env->side == 0)
+		env->wall_dist = (env->map.x - env->ray_pos.x +
+				(1 - env->step.x) / 2) / env->ray_dir.x;
+	else
+		env->wall_dist = (env->map.y - env->ray_pos.y +
+				(1 - env->step.y) / 2) / env->ray_dir.y;
 }
 
 int				main(int ac, char **av)

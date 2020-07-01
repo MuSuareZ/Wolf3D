@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:39:00 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/29 17:28:53 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/01 15:46:58 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,16 @@ typedef struct	s_env
 {
 	void		*mlx;
 	void		*win;
+	double		old_dir_x;
+	double		old_plane_x;
+	double		wall_dist;
+	double		camera_x;
 	int			id;
-	int			thread_id;
 	int			x_text;
 	int			y_text;
-	t_image		tex[9];
-	t_image		img;
-	t_player	player;
 	int			x;
 	int			texture;
 	int			line_height;
-	double		wall_dist;
-	double		camera_x;
 	int			draw_start;
 	int			draw_end;
 	int			flag_zero;
@@ -101,10 +99,14 @@ typedef struct	s_env
 	int			side;
 	int			hit;
 	int			color;
+	t_image		tex[9];
+	t_image		img;
+	t_player	player;
 	t_point		map;
 	t_point		step;
 	t_coord		delta_dist;
 	t_coord		ray_dir;
+	t_coord		ray_pos;
 	t_coord		side_dist;
 	t_coord		dir;
 	t_coord		plane;

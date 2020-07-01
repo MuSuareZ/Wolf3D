@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 16:07:47 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/29 17:28:43 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/01 13:54:54 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void			init_img(t_env *env)
 	env->img.image = mlx_new_image(env->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	env->img.ptr = mlx_get_data_addr(env->img.image, &env->img.bpp,
 		&env->img.line_s, &env->img.endian);
-	env->img.bpp /= 8;
 }
 
 void			img_pixel_put(t_env *env, int x, int y, int color)
