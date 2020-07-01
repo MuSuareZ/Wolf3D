@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:39:00 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/07/01 15:46:58 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:18:22 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef struct	s_env
 	int			side;
 	int			hit;
 	int			color;
-	t_image		tex[9];
+	t_image		tex[10];
 	t_image		img;
 	t_player	player;
 	t_point		map;
