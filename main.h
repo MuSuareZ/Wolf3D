@@ -6,24 +6,20 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:39:00 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/07/01 17:18:22 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/06 13:48:23 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
 # define MAIN_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
-# include <time.h>
-# include <pthread.h>
 # include <fcntl.h>
 # include <mlx.h>
 # include "libft/libft.h"
 
-# define THREADS 64
 # define SCREEN_WIDTH 1000
 # define SCREEN_HEIGHT 1000
 

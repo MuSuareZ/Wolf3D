@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 14:27:30 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/07/01 17:06:25 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/06 13:44:51 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			draw_wall(int x, t_env *env)
 			env->x_text = 64 - env->x_text - 1;
 		if (env->side == 1 && env->ray_dir.y < 0)
 			env->x_text = 64 - env->x_text - 1;
-		env->x_text = abs(env->x_text);
+		env->x_text = ft_abs(env->x_text);
 	}
 	while (++env->draw_start != env->draw_end)
 		img_pixel_put(env, x, env->draw_start, env->color);

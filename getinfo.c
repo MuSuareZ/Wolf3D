@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 15:23:15 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/06/09 15:42:39 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/06 13:42:13 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int			get_height(char *filepath)
 	}
 	if (ret == 0)
 	{
-		printf("Error: No height, empty map?\n");
+		ft_putendl("Error: No height, empty map?\n");
 		exit(0);
 	}
 	close(fd);
@@ -97,7 +97,7 @@ int			get_width(char *filepath)
 	}
 	if (ret == 0)
 	{
-		printf("Error: No width, empty map?\n");
+		ft_putendl("Error: No width, empty map?\n");
 		exit(0);
 	}
 	close(fd);

@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 11:13:59 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/07/01 17:34:33 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/03 13:37:55 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void			load_texture(t_env *env)
 	a = 64;
 	b = 64;
 	env->tex[1].image =
-		mlx_xpm_file_to_image(env->mlx, "texture/wood.xpm", &a, &b);
+		mlx_xpm_file_to_image(env->mlx, "texture/stone.xpm", &a, &b);
 	env->tex[1].ptr = mlx_get_data_addr(env->tex[1].image, &env->tex[1].bpp,
 		&env->tex[1].line_s, &env->tex[1].endian);
 	env->tex[2].image =
-		mlx_xpm_file_to_image(env->mlx, "texture/stone.xpm", &a, &b);
+		mlx_xpm_file_to_image(env->mlx, "texture/wood.xpm", &a, &b);
 	env->tex[2].ptr = mlx_get_data_addr(env->tex[2].image, &env->tex[2].bpp,
 			&env->tex[2].line_s, &env->tex[2].endian);
 	env->tex[3].image =
