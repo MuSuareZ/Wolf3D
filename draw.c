@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 14:27:30 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/07/06 13:44:51 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/29 18:26:01 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		draw_points(t_env *env)
 		env->draw_end = SCREEN_HEIGHT - 1;
 }
 
-void			draw_wall(int x, t_env *env)
+void			draw_wall(t_env *env)
 {
 	if (env->texture == 1)
 	{
@@ -40,7 +40,7 @@ void			draw_wall(int x, t_env *env)
 		env->x_text = ft_abs(env->x_text);
 	}
 	while (++env->draw_start != env->draw_end)
-		img_pixel_put(env, x, env->draw_start, env->color);
+		img_pixel_put(env, env->x, env->draw_start, env->color);
 }
 
 void			draw_sky(t_env *env)
@@ -61,7 +61,7 @@ void			draw_sky(t_env *env)
 	}
 }
 
-void			draw_floor(t_env *env, int x)
+void			draw_floor(t_env *env)
 {
 	int		y;
 
@@ -69,9 +69,9 @@ void			draw_floor(t_env *env, int x)
 	{
 		env->color = 0x333333;
 		y = env->draw_end - 1;
-		if (x < SCREEN_WIDTH && y < SCREEN_HEIGHT)
+		if (env->x < SCREEN_WIDTH && y < SCREEN_HEIGHT)
 			while (++y < SCREEN_HEIGHT)
-				ft_memcpy(env->img.ptr + 4 * SCREEN_WIDTH * y + x * 4,
+				ft_memcpy(env->img.ptr + 4 * SCREEN_WIDTH * y + env->x * 4,
 						&env->color, sizeof(int));
 	}
 }
@@ -90,8 +90,8 @@ void			draw_world(t_env *env)
 			env->color = 0x008000;
 		else
 			env->color = 0x00FF00;
-		draw_wall(env->x, env);
-		draw_floor(env, env->x);
+		draw_wall(env);
+		draw_floor(env);
 	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img.image, 0, 0);
 	mlx_destroy_image(env->mlx, env->img.image);

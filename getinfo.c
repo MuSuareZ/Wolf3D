@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 15:23:15 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/07/06 13:42:13 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/29 18:15:11 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int			get_height(char *filepath)
 		free(line);
 		line = 0;
 	}
-	if (ret == 0)
+	if (ret == 0 || ret > 200)
 	{
-		ft_putendl("Error: No height, empty map?\n");
+		ft_putendl("Error: No height or way too big map! Max height: 200");
 		exit(0);
 	}
 	close(fd);
@@ -95,9 +95,9 @@ int			get_width(char *filepath)
 		free(line);
 		line = 0;
 	}
-	if (ret == 0)
+	if (ret == 0 || ret > 200)
 	{
-		ft_putendl("Error: No width, empty map?\n");
+		ft_putendl("Error: No width or way too big map! Max width: 200");
 		exit(0);
 	}
 	close(fd);

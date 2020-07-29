@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:39:00 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/07/06 13:48:23 by msuarez-         ###   ########.fr       */
+/*   Updated: 2020/07/29 18:27:14 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "libft/libft.h"
 
 # define SCREEN_WIDTH 1000
-# define SCREEN_HEIGHT 1000
+# define SCREEN_HEIGHT 900
 
 # define ESC 53
 # define W 13
@@ -115,6 +115,8 @@ int				event_key(t_env *env);
 int				press_key(int keycode, t_env *env);
 int				release_key(int keycode, t_env *env);
 int				mouse_move(int x, int y, t_env *e);
+void			draw_world(t_env *env);
+void			thread_map(t_env *env);
 void			raycast_init(t_env *env, int x);
 void			check_step(t_env *env);
 void			check_hit(t_env *env);
@@ -122,7 +124,6 @@ void			read_args(char *filepath, t_env *env);
 void			parse_args(char *filepath, t_env *env);
 void			load_texture(t_env *env);
 void			exit_error(int n);
-void			draw_world(t_env *env);
 void			img_pixel_put(t_env *env, int x, int y, int color);
 void			init_img(t_env *env);
 
