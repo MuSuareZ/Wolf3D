@@ -8,6 +8,8 @@ The goal is to represent a dynamic view in a labyrinth which you can move inside
 ***REALLY IMPORTANT: You MUST have the graphical library used in the whole project called MinilibX installed and a MacOS in order to
 use the keys to interact with the shapes!***
 
+***PS: You should always ignore the quotation marks, they are just comments of what you should input***
+
 > git clone "my repo URL" "your folder path"
 
 You can compile it through a Makefile in the root of my Repo
@@ -17,7 +19,7 @@ This will compile my library with useful C functions, the graphical library Mini
 creating an executable called **wolf3d**
 
 In order to run the executable, type:
-> ./wolf3d "test map"
+> ./wolf3d "your test map"
 
 # Creating a map
 
@@ -31,20 +33,22 @@ This is the smallest square possible you can create. It's mandatory to have wall
 
 1 2 3 4 5 6 7 8 9 = Walls with a specific sprite each
 
-0 = floor
+0 = Floor
 
 You need spaces between the numbers and of course only digits. I did my best to make sure all mistakes were handled so if something is wrong, my program
 will stop and tell you what's wrong on your map.
 
+The player's start position will ALWAYS be the first zero found by the program from the most top-left corner on your map.
+
 **In case you have any doubt of how the map should be made, check map folder with valid and invalid examples.**
 
-**Buttons**
+# Buttons
 - Arrow Keys or WASD -------->"Move around"
 - 1 (Numeral) ----------->"Turn ON/OFF Sprites"
-- Left Shift or Right Shift ------>"Hold it to sprint"
+- Left Shift or Right Shift ------>"Hold it to sprint while moving forward"
 - ESC Key ----------->"Close Program"
+
+# Images
 
 ![Image of Subject](https://github.com/MuSuareZ/Wolf3D/blob/master/img/textureoff.png)
 ![Image of Subject](https://github.com/MuSuareZ/Wolf3D/blob/master/img/textureon.png)
-
-***PS: You should always ignore the quotation marks, they are just comments of what you should input***
