@@ -1,7 +1,7 @@
 # Wolf3D
 
-Inspired by the famous eponymous game of the 90s and the first First Person Shooter, this project got me acquainted with ray-casting.
-The goal is to represent a dynamic view in a labyrinth which you can move inside.
+Inspired by the famous eponymous game of the 90s and the first First Person Shooter, Wolfenstein 3D. This project got me acquainted with ray-casting.
+The goal was to represent a dynamic view in a labyrinth which you can move inside.
 
 # How to use it?
 
@@ -48,6 +48,10 @@ The player's start position will ALWAYS be the first zero found by the program f
 - 1 (Numeral) ----------------->"Turn ON/OFF Sprites"
 - Left Shift or Right Shift ------>"Hold it to sprint while moving forward"
 - ESC Key -------------------->"Close Program"
+
+# Future implementations
+Many implementations such as an objective, objects to collect, enemies, health system and everything an actual game would have will be covered at the next project
+**Doom Nukem** since it's a continuation of this project according to 42's project schedule. Doom Nukem will be a cross-over between Dukem Nukem and Doom, bringing the best from both games on top of this project. I am very excited to be working on it and I hope you enjoyed Wolf3D.
 
 # Images
 
