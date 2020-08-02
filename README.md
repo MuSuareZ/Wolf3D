@@ -5,9 +5,10 @@ The goal is to represent a dynamic view in a labyrinth which you can move inside
 
 # How to use it?
 
-***REALLY IMPORTANT: You MUST have the graphical library used in the whole project called MinilibX installed and a MacOS in order to
-use the keys to interact with the shapes!***
+***REALLY IMPORTANT: You MUST have the graphical library used in all my graphical projects at 42 Schools called MinilibX and a MacOS in order to use the keys!***
 
+***If you would like to know how to install MinilibX, check this https://github.com/gcamerli/minilibx for clear instructions and system requirements***
+ 
 ***PS: You should always ignore the quotation marks, they are just comments of what you should input***
 
 > git clone "my repo URL" "your folder path"
@@ -23,7 +24,7 @@ In order to run the executable, type:
 
 # Creating a map
 
-This is the smallest square possible you can create. It's mandatory to have walls on map limits and at least one floor spot to place the character.
+This is the smallest square possible that you can create. It's mandatory to have walls on map limits and at least one floor spot to place the character.
 
 > 1 1 1
 
@@ -35,7 +36,7 @@ This is the smallest square possible you can create. It's mandatory to have wall
 
 0 = Floor
 
-You need spaces between the numbers and of course only digits. I did my best to make sure all mistakes were handled so if something is wrong, my program
+You need spaces between the numbers and of course only digits from 0 to 9. I did my best to make sure all mistakes were handled so if something is wrong, my program
 will stop and tell you what's wrong on your map.
 
 The player's start position will ALWAYS be the first zero found by the program from the most top-left corner on your map.
@@ -44,9 +45,9 @@ The player's start position will ALWAYS be the first zero found by the program f
 
 # Buttons
 - Arrow Keys or WASD -------->"Move around"
-- 1 (Numeral) ----------->"Turn ON/OFF Sprites"
+- 1 (Numeral) ----------------->"Turn ON/OFF Sprites"
 - Left Shift or Right Shift ------>"Hold it to sprint while moving forward"
-- ESC Key ----------->"Close Program"
+- ESC Key -------------------->"Close Program"
 
 # Images
 
