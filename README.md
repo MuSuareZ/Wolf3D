@@ -5,6 +5,8 @@ The goal was to represent a dynamic view in a labyrinth which you can move insid
 
 # How to use it?
 
+04/05/2022: I took the time to add a standalone version of MinilibX for MacOSX so all you gotta do is jump into testing it :) No installing MinilibX anymore
+
 ***REALLY IMPORTANT: You MUST have the graphical library used in all my graphical projects at 42 Schools called MinilibX and a MacOS in order to use the keys!***
 
 ***If you would like to know how to install MinilibX, check this https://github.com/gcamerli/minilibx for clear instructions and system requirements***
