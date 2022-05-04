@@ -17,8 +17,8 @@
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
-# include <mlx.h>
-# include "libft/libft.h"
+# include "../mlx/mlx.h"
+# include "../libft/libft.h"
 
 # define SCREEN_WIDTH 1000
 # define SCREEN_HEIGHT 900
