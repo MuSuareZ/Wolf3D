@@ -6,7 +6,7 @@
 /*   By: msuarez- <msuarez-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 15:39:00 by msuarez-          #+#    #+#             */
-/*   Updated: 2020/07/29 18:27:14 by msuarez-         ###   ########.fr       */
+/*   Updated: 2022/09/12 22:48:14 by msuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
-# include "../mlx/mlx.h"
+# include <mlx.h>
 # include "../libft/libft.h"
 
 # define SCREEN_WIDTH 1000
