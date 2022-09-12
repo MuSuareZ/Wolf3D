@@ -4,12 +4,6 @@ Inspired by the famous eponymous game of the 90s and the first First Person Shoo
 The goal was to represent a dynamic view in a labyrinth which you can move inside.
 
 # How to use it?
-
-04/05/2022: I took the time to add a standalone version of MinilibX for MacOSX so all you gotta do is jump into testing it :) No installing MinilibX anymore
-
-***REALLY IMPORTANT: You MUST have the graphical library used in all my graphical projects at 42 Schools called MinilibX and a MacOS in order to use the keys!***
-
-***If you would like to know how to install MinilibX, check this https://github.com/gcamerli/minilibx for clear instructions and system requirements***
  
 ***PS: You should always ignore the quotation marks, they are just comments of what you should input***
 
@@ -52,6 +46,10 @@ The player's start position will ALWAYS be the first zero found by the program f
 - ESC Key -------------------->"Close Program"
 
 # Future implementations
+09/12/2022: Added standalone version of Minilibx for Linux - Done
+ - Add support for linux keyboard keys - TBD
+04/05/2022: Added standalone version of Minilibx for MacOSX - Done
+
 Many implementations such as an objective, objects to collect, enemies, health system and everything an actual game would have will be covered at the next project
 **Doom Nukem** since it's a continuation of this project according to 42's project schedule. Doom Nukem will be a cross-over between Dukem Nukem and Doom, bringing the best from both games on top of this project. I am very excited to be working on it and I hope you enjoyed Wolf3D.
 
