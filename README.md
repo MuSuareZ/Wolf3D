@@ -46,8 +46,10 @@ The player's start position will ALWAYS be the first zero found by the program f
 - ESC Key -------------------->"Close Program"
 
 # Future implementations
+
 09/12/2022: Added standalone version of Minilibx for Linux - Done
  - Add support for linux keyboard keys - TBD
+
 04/05/2022: Added standalone version of Minilibx for MacOSX - Done
 
 Many implementations such as an objective, objects to collect, enemies, health system and everything an actual game would have will be covered at the next project
